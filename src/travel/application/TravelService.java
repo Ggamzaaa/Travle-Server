@@ -10,17 +10,13 @@ import java.util.Objects;
 
 public class TravelService {
     private final TravelRepository repo;
-    private final IdGenerator idGen;
 
-    public TravelService(TravelRepository repo, IdGenerator idGen) {
+    public TravelService(TravelRepository repo) {
         this.repo = Objects.requireNonNull(repo);
-        this.idGen = Objects.requireNonNull(idGen);
     }
 
-    public Travel create(String name, LocalDate start, LocalDate end) {
-        int newId = idGen.nextId();
-        Travel t  = new Travel(newId, name, start, end);
-        return repo.save(t);
+    public Travel save(Travel travel) {
+        return repo.save(travel);
     }
 
     public List<Travel> listAll() {
