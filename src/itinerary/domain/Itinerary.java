@@ -33,6 +33,30 @@ public class Itinerary {
         return travelId;
     }
 
+    public String getDeparturePlace() {
+        return departurePlace;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public LocalDateTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public LocalDateTime getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public LocalDateTime getCheckIn() {
+        return checkIn;
+    }
+
+    public LocalDateTime getCheckOut() {
+        return checkOut;
+    }
+
     @Override
     public String toString() {
         return "Itinerary ID: " + itineraryId +
