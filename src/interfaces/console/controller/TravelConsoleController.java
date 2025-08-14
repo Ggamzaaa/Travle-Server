@@ -14,6 +14,7 @@ public class TravelConsoleController {
     }
 
     public void recordTravel() {
-        Travel travel = travelView.getTravelRecord();
+        Travel travel = travelView.readTravelFromUser();
+        travelView.displayTravelSaved(travel);
     }
 }

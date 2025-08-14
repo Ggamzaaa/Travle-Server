@@ -24,19 +24,19 @@ public final class Travel {
         this.endDate = e;
     }
 
-    public int id() {
+    public int getId() {
         return id;
     }
 
-    public String name() {
+    public String getName() {
         return name;
     }
 
-    public LocalDate startDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public LocalDate endDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 }
