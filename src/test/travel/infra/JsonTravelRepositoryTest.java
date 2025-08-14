@@ -30,14 +30,14 @@ public class JsonTravelRepositoryTest {
         System.out.println("findById(1):");
         Travel found = repo.findById(1).orElseThrow();
         TestUtil.printTravel(found);
-        TestUtil.assertEquals("상하이 여행", found.name(), "name");
+        TestUtil.assertEquals("상하이 여행", found.getName(), "name");
 
         System.out.println("정렬된 전체 목록:");
         List<Travel> all = repo.findAll();
         TestUtil.printList(all);
         TestUtil.assertEquals(2, all.size(), "all size");
-        TestUtil.assertEquals(1, all.get(0).id(), "sorted[0]");
-        TestUtil.assertEquals(2, all.get(1).id(), "sorted[1]");
+        TestUtil.assertEquals(1, all.get(0).getId(), "sorted[0]");
+        TestUtil.assertEquals(2, all.get(1).getId(), "sorted[1]");
 
         TestUtil.pass("JsonTravelRepositoryTest");
     }
