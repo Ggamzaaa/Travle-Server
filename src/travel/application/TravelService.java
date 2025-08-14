@@ -1,25 +1,10 @@
 package travel.application;
 
-import common.domain.IdGenerator;
-import travel.domain.Travel;
-import travel.domain.TravelRepository;
-
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
+import travel.domain.Travel;
 
-public class TravelService {
-    private final TravelRepository repo;
+public interface TravelService {
+    Travel save(Travel travel);
 
-    public TravelService(TravelRepository repo) {
-        this.repo = Objects.requireNonNull(repo);
-    }
-
-    public Travel save(Travel travel) {
-        return repo.save(travel);
-    }
-
-    public List<Travel> listAll() {
-        return repo.findAll();
-    }
+    List<Travel> listAll();
 }

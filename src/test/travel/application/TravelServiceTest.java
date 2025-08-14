@@ -3,7 +3,7 @@ package test.travel.application;
 import common.domain.AtomicIdGenerator;
 import test.util.TestUtil;
 import travel.application.TravelFactory;
-import travel.application.TravelService;
+import travel.application.TravelServiceImpl;
 import travel.domain.Travel;
 import travel.domain.TravelRepository;
 import travel.infra.JsonTravelRepository;
@@ -20,7 +20,7 @@ public class TravelServiceTest {
         TravelRepository repo = new JsonTravelRepository(dir.getPath());
         int seed = repo.findAll().stream().mapToInt(Travel::getId).max().orElse(0);
         var factory = new TravelFactory(new AtomicIdGenerator(seed));
-        var svc = new TravelService(repo);
+        var svc = new TravelServiceImpl(repo);
 
         System.out.println("생성 2건:");
         Travel t1 = svc.save(factory.newTravel("여행 A", LocalDate.parse("2025-08-19"), LocalDate.parse("2025-08-31")));

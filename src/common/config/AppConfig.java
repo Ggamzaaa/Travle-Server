@@ -1,6 +1,6 @@
 package common.config;
 
-import interfaces.console.controller.MainController;
+import interfaces.console.controller.MainConsoleController;
 import common.domain.IdGenerator;
 import common.domain.AtomicIdGenerator; // nextId() 형태
 import interfaces.console.controller.TravelConsoleController;
@@ -9,6 +9,7 @@ import interfaces.console.util.InputParser;
 import interfaces.console.view.TravelView;
 import travel.application.TravelFactory;
 import travel.application.TravelService;
+import travel.application.TravelServiceImpl;
 import travel.domain.Travel;
 import travel.domain.TravelRepository;
 import travel.infra.JsonTravelRepository;
@@ -24,7 +25,7 @@ public class AppConfig {
         int seed = travelRepository.findAll().stream().mapToInt(Travel::getId).max().orElse(0);
         this.idGenerator = new AtomicIdGenerator(seed);
         this.travelFactory = new TravelFactory(idGenerator);
-        this.travelService = new TravelService(travelRepository);
+        this.travelService = new TravelServiceImpl(travelRepository);
     }
 
     public TravelRepository travelRepository() {
@@ -35,11 +36,11 @@ public class AppConfig {
      * 의존성 주입 코드
      */
     public TravelService travelService() {
-        return new TravelService(travelRepository);
+        return new TravelServiceImpl(travelRepository);
     }
 
-    public MainController mainController() {
-        return new MainController(travelConsoleController());
+    public MainConsoleController mainController() {
+        return new MainConsoleController(travelConsoleController());
     }
 
     public TravelConsoleController travelConsoleController() {
