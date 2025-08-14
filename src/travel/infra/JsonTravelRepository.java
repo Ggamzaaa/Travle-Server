@@ -19,7 +19,7 @@ public class JsonTravelRepository implements TravelRepository {
 
     @Override
     public synchronized Travel save(Travel travel) {
-        json.saveTravelMeta(travel, filePathFor(travel.id()));
+        json.saveTravelMeta(travel, filePathFor(travel.getId()));
         return travel;
     }
 
@@ -39,7 +39,7 @@ public class JsonTravelRepository implements TravelRepository {
                 if (t != null) out.add(t);
             }
         }
-        out.sort(Comparator.comparingInt(Travel::id));
+        out.sort(Comparator.comparingInt(Travel::getId));
         return out;
     }
 

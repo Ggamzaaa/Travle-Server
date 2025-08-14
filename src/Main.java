@@ -1,9 +1,10 @@
 import common.config.AppConfig;
-import interfaces.MainController;
+import interfaces.console.controller.MainController;
 
 public class Main {
     public static void main(String[] args) {
-        MainController mainController = AppConfig.mainController();
+        AppConfig appConfig = new AppConfig();
+        MainController mainController = appConfig.mainController();
         System.out.println("[server] server is running");
         mainController.run();
     }

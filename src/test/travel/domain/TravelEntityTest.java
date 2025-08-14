@@ -14,7 +14,7 @@ public class TravelEntityTest {
                 LocalDate.parse("2025-08-19"), LocalDate.parse("2025-08-31"));
         System.out.println("정상 생성 객체:");
         TestUtil.printTravel(t);
-        TestUtil.assertEquals("대전 여행", t.name(), "trim name");
+        TestUtil.assertEquals("대전 여행", t.getName(), "trim name");
 
         // 이름 공백 예외
         try {

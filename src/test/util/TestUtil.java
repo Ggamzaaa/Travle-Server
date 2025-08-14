@@ -39,7 +39,7 @@ public class TestUtil {
     }
     public static void printTravel(Travel t) {
         System.out.printf("여행 id : %d%n여행 이름 : %s%n시작 : %s%n종료 : %s%n",
-                t.id(), t.name(), t.startDate().format(D), t.endDate().format(D));
+                t.getId(), t.getName(), t.getStartDate().format(D), t.getEndDate().format(D));
         System.out.println("--------------------");
     }
     public static void printList(List<Travel> list) {

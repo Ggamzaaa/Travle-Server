@@ -27,10 +27,10 @@ public class JsonGeneratorTest {
         System.out.println("로드된 객체:");
         TestUtil.printTravel(loaded);
 
-        TestUtil.assertEquals(src.id(), loaded.id(), "id");
-        TestUtil.assertEquals(src.name(), loaded.name(), "name");
-        TestUtil.assertEquals(src.startDate(), loaded.startDate(), "start");
-        TestUtil.assertEquals(src.endDate(), loaded.endDate(), "end");
+        TestUtil.assertEquals(src.getId(), loaded.getId(), "id");
+        TestUtil.assertEquals(src.getName(), loaded.getName(), "name");
+        TestUtil.assertEquals(src.getStartDate(), loaded.getStartDate(), "start");
+        TestUtil.assertEquals(src.getEndDate(), loaded.getEndDate(), "end");
 
         TestUtil.pass("JsonGeneratorTest");
     }
