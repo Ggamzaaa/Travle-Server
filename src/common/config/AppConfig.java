@@ -1,6 +1,6 @@
 package common.config;
 
-import interfaces.MainController;
+import interfaces.console.controller.MainController;
 import common.domain.IdGenerator;
 import common.domain.AtomicIdGenerator; // nextId() 형태
 import travel.application.TravelService;
