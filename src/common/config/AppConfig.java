@@ -1,6 +1,6 @@
 package common.config;
 
-import MainController;
+import interfaces.MainController;
 
 // 의존성 주입
 public class AppConfig {
