@@ -1,5 +1,5 @@
 package common.domain;
 
-public interface IdGenerator<T> {
-    T generateId(T prevId);
+public interface IdGenerator {
+    int nextId();
 }
