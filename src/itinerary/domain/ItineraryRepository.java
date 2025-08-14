@@ -7,7 +7,6 @@ import java.util.*;
 public class ItineraryRepository {
     private final String dirPath;
     private final JsonGenerator json;
-    private final Map<Integer, Itinerary> itineraryMap = new HashMap<>();
 
     public ItineraryRepository(String dirPath) {
         this.dirPath = dirPath;
@@ -15,9 +14,10 @@ public class ItineraryRepository {
         ensureDir();
     }
 
-    public void save(Itinerary itinerary) {
+    public Itinerary save(Itinerary itinerary) {
         String filePath = filePathFor(itinerary.getTravelId());
         json.saveItinerary(itinerary, filePath);
+        return itinerary;  // 저장 후 객체 반환
     }
 
     public List<Itinerary> findItinerariesByTravelId(int travelId) {
