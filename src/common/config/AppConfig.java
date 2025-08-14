@@ -1,5 +1,6 @@
 package common.config;
 
+import interfaces.MainController;
 import common.domain.IdGenerator;
 import common.domain.AtomicIdGenerator; // nextId() 형태
 import travel.application.TravelService;
@@ -15,6 +16,10 @@ public class AppConfig {
         this.travelRepository = new JsonTravelRepository("data/travels.json");
         int seed = travelRepository.findAll().stream().mapToInt(Travel::id).max().orElse(0);
         this.idGenerator = new AtomicIdGenerator(seed);
+    }
+  
+    public static MainController mainController() {
+        return new MainController();
     }
 
     public TravelRepository travelRepository() { return travelRepository; }
