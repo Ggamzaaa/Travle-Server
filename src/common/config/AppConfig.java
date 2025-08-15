@@ -1,12 +1,14 @@
 package common.config;
 
 import interfaces.console.controller.MainConsoleController;
-import common.domain.IdGenerator;
-import common.domain.AtomicIdGenerator;
 import interfaces.console.controller.TravelConsoleController;
 import interfaces.console.util.InputHandler;
 import interfaces.console.util.InputParser;
 import interfaces.console.view.TravelView;
+import common.domain.AtomicIdGenerator;
+import common.domain.IdGenerator;
+import itinerary.domain.ItineraryRepository;
+import itinerary.domain.JsonItineraryRepository;
 import travel.application.TravelFactory;
 import travel.application.TravelService;
 import travel.application.TravelServiceImpl;
@@ -19,47 +21,35 @@ public class AppConfig {
     private final IdGenerator idGenerator;
     private final TravelFactory travelFactory;
     private final TravelService travelService;
+    private final ItineraryRepository itineraryRepository;
+    private final InputParser inputParser;
+    private final InputHandler inputHandler;
+    private final TravelView travelView;
+    private final TravelConsoleController travelConsoleController;
+    private final MainConsoleController mainController;
 
     public AppConfig() {
         this.travelRepository = new JsonTravelRepository("data");
-        int seed = travelRepository.findAll().stream().mapToInt(Travel::getId).max().orElse(0);
+        this.itineraryRepository = new JsonItineraryRepository("data");
+
+        int seed = travelRepository.findAll().stream()
+                .mapToInt(Travel::getId)
+                .max()
+                .orElse(0);
         this.idGenerator = new AtomicIdGenerator(seed);
+
         this.travelFactory = new TravelFactory(idGenerator);
         this.travelService = new TravelServiceImpl(travelRepository);
+
+        this.inputParser = new InputParser();
+        this.inputHandler = new InputHandler(inputParser);
+
+        this.travelView = new TravelView(inputHandler, travelFactory);
+        this.travelConsoleController = new TravelConsoleController(travelService, travelView);
+        this.mainController = new MainConsoleController(travelConsoleController);
     }
 
-    public TravelRepository travelRepository() {
-        return travelRepository;
-    }
-
-    /**
-     * 의존성 주입 코드
-     */
-    public TravelService travelService() {
-        return new TravelServiceImpl(travelRepository);
-    }
-
-    public MainConsoleController mainController() {
-        return new MainConsoleController(travelConsoleController());
-    }
-
-    public TravelConsoleController travelConsoleController() {
-        return new TravelConsoleController(travelService, travelView());
-    }
-
-    public TravelView travelView() {
-        return new TravelView(inputHandler(), travelFactory);
-    }
-
-    public TravelFactory travelFactory() {
-        return new TravelFactory(idGenerator);
-    }
-
-    public InputHandler inputHandler() {
-        return new InputHandler(inputParser());
-    }
-
-    public InputParser inputParser() {
-        return new InputParser();
+    public MainConsoleController mainConsoleController() {
+        return mainController;
     }
 }

@@ -4,7 +4,7 @@ import interfaces.console.controller.MainConsoleController;
 public class Main {
     public static void main(String[] args) {
         AppConfig appConfig = new AppConfig();
-        MainConsoleController mainConsoleController = appConfig.mainController();
+        MainConsoleController mainConsoleController = appConfig.mainConsoleController();
         System.out.println("[server] server is running");
         mainConsoleController.run();
     }

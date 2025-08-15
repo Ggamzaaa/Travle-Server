@@ -10,7 +10,7 @@ public class ItineraryTest {
     public static void main(String[] args) {
         System.out.println("=== ItineraryTest 시작 ===");
 
-        File dir = new File("test-out/repo-1755151995591");
+        File dir = new File("test-out/repo-1755154292693");
         ItineraryService itineraryService = new ItineraryService(dir.getPath());
 
 //        // --- 여정 기록 ---

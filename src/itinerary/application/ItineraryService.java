@@ -2,6 +2,7 @@ package itinerary.application;
 
 import itinerary.domain.Itinerary;
 import itinerary.domain.ItineraryRepository;
+import itinerary.domain.JsonItineraryRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,11 +14,13 @@ public class ItineraryService {
 
     // JSON 저장할 디렉토리 경로를 생성자에서 받음
     public ItineraryService(String dirPath) {
-        this.itineraryRepository = new ItineraryRepository(dirPath);
+        this.itineraryRepository = new JsonItineraryRepository(dirPath);
     }
 
-    public void createItinerary(String inputTravelId, String inputItineraryId, String inputDeparturePlace, String inputDestination,
-                                String inputDepartureTime, String inputArrivalTime, String inputCheckIn, String inputCheckOut) {
+    public void createItinerary(String inputTravelId, String inputItineraryId, String inputDeparturePlace,
+                                String inputDestination,
+                                String inputDepartureTime, String inputArrivalTime, String inputCheckIn,
+                                String inputCheckOut) {
 
         // 1. ID 형식 체크
         int travelId;
@@ -63,7 +66,9 @@ public class ItineraryService {
     }
 
     private LocalDateTime parseDateTime(String dateTimeStr) {
-        if (dateTimeStr == null || dateTimeStr.isBlank()) return null;
+        if (dateTimeStr == null || dateTimeStr.isBlank()) {
+            return null;
+        }
         return LocalDateTime.parse(dateTimeStr, formatter).withSecond(0);
     }
 
