@@ -3,6 +3,8 @@ package interfaces.console.util;
 import common.exception.ErrorCode;
 import common.exception.TravelException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class InputParser {
@@ -36,6 +38,38 @@ public class InputParser {
             return LocalDate.parse(localDate);
         } catch (DateTimeParseException e) {
             throw new TravelException(ErrorCode.TRAVEL_DATE_FORMAT_EXCEPTION);
+        }
+    }
+
+    public void validateDeparturePlace(String departurePlace) {
+        if (departurePlace.isEmpty()) {
+            throw new TravelException(ErrorCode.TRAVEL_DEPARTURE_PLACE_IS_EMPTY);
+        }
+    }
+
+    public void validateDestination(String destination) {
+        if (destination.isEmpty()) {
+            throw new TravelException(ErrorCode.TRAVEL_DESTINATION_IS_EMPTY);
+        }
+    }
+
+    public void validateDepartureTime(String departureTime) {
+        if (departureTime.isEmpty()) {
+            throw new TravelException(ErrorCode.TRAVEL_DEPARTURE_TIME_IS_EMPTY);
+        }
+    }
+
+    public void validateArrivalTime(String arrivalTime) {
+        if (arrivalTime.isEmpty()) {
+            throw new TravelException(ErrorCode.TRAVEL_ARRIVAL_TIME_IS_EMPTY);
+        }
+    }
+
+    public LocalDateTime parseLocalDateTime(String dateTimeString) {
+        try {
+            return LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            } catch (DateTimeParseException e) {
+                throw new TravelException(ErrorCode.TRAVEL_DATE_FORMAT_EXCEPTION);
         }
     }
 }

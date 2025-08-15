@@ -29,6 +29,10 @@ public class Itinerary {
         return itineraryId;
     }
 
+    public String getFormattedItineraryId() {
+        return travelId + "-" + itineraryId;
+    }
+
     public int getTravelId() {
         return travelId;
     }
