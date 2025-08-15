@@ -1,9 +1,11 @@
 package common.config;
 
+import common.exception.GlobalExceptionHandler;
 import interfaces.console.controller.MainConsoleController;
 import interfaces.console.controller.TravelConsoleController;
 import interfaces.console.util.InputHandler;
 import interfaces.console.util.InputParser;
+import interfaces.console.util.RetryHandler;
 import interfaces.console.view.TravelView;
 import common.domain.AtomicIdGenerator;
 import common.domain.IdGenerator;
@@ -27,6 +29,8 @@ public class AppConfig {
     private final TravelView travelView;
     private final TravelConsoleController travelConsoleController;
     private final MainConsoleController mainController;
+    private final GlobalExceptionHandler globalExceptionHandler;
+    private final RetryHandler retryHandler;
 
     public AppConfig() {
         this.travelRepository = new JsonTravelRepository("data");
@@ -43,8 +47,9 @@ public class AppConfig {
 
         this.inputParser = new InputParser();
         this.inputHandler = new InputHandler(inputParser);
-
-        this.travelView = new TravelView(inputHandler, travelFactory);
+        this.globalExceptionHandler = new GlobalExceptionHandler();
+        this.retryHandler = new RetryHandler(globalExceptionHandler);
+        this.travelView = new TravelView(inputHandler, travelFactory, retryHandler);
         this.travelConsoleController = new TravelConsoleController(travelService, travelView);
         this.mainController = new MainConsoleController(travelConsoleController);
     }

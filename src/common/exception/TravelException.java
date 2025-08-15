@@ -4,7 +4,7 @@ public class TravelException extends RuntimeException {
     private final ErrorCode errorCode;
 
     public TravelException(ErrorCode errorCode) {
-        super(errorCode.name());
+        super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
 
