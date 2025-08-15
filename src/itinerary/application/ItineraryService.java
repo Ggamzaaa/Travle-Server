@@ -2,7 +2,6 @@ package itinerary.application;
 
 import itinerary.domain.Itinerary;
 import itinerary.domain.ItineraryRepository;
-
 import java.util.List;
 import java.util.Objects;
 

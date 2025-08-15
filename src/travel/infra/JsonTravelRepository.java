@@ -24,7 +24,7 @@ public class JsonTravelRepository implements TravelRepository {
     }
 
     @Override
-    public Optional<Travel> findById(int id) {
+    public Optional<Travel> findById(Integer id) {
         return Optional.ofNullable(json.loadTravelMeta(filePathFor(id)));
     }
 
@@ -36,13 +36,23 @@ public class JsonTravelRepository implements TravelRepository {
         if (files != null) {
             for (File f : files) {
                 Travel t = json.loadTravelMeta(f.getPath());
-                if (t != null) out.add(t);
+                if (t != null) {
+                    out.add(t);
+                }
             }
         }
         out.sort(Comparator.comparingInt(Travel::getId));
         return out;
     }
 
-    private String filePathFor(int id) { return dirPath + File.separator + "travel_" + id + ".json"; }
-    private void ensureDir() { File d = new File(dirPath); if (!d.exists()) d.mkdirs(); }
+    private String filePathFor(int id) {
+        return dirPath + File.separator + "travel_" + id + ".json";
+    }
+
+    private void ensureDir() {
+        File d = new File(dirPath);
+        if (!d.exists()) {
+            d.mkdirs();
+        }
+    }
 }

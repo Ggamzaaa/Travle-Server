@@ -6,6 +6,7 @@ import itinerary.application.ItineraryService;
 import itinerary.domain.Itinerary;
 import itinerary.domain.ItineraryRepository;
 
+import itinerary.infra.JsonItineraryRepository;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +17,7 @@ public class ItineraryTest {
 
         // 기존 파일 기반 Repository 사용
         File dir = new File("test-out/repo-1755154292693");
-        ItineraryRepository repo = new ItineraryRepository(dir.getPath());
+        ItineraryRepository repo = new JsonItineraryRepository(dir.getPath());
         int travelId = 1;
         int seed = repo.findItinerariesByTravelId(travelId).stream().mapToInt(Itinerary::getItineraryId).max().orElse(0);
 

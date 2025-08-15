@@ -1,45 +1,48 @@
 package interfaces.console.view;
 
 import interfaces.console.util.InputHandler;
+import interfaces.console.util.RetryHandler;
 import java.time.LocalDate;
 import java.util.List;
+import travel.application.TravelFactory;
 import travel.domain.Travel;
 
 public class TravelView {
     private final InputHandler inputHandler;
+    private final TravelFactory travelFactory;
+    private final RetryHandler retryHandler;
 
-    public TravelView(InputHandler inputHandler) {
+    public TravelView(InputHandler inputHandler, TravelFactory travelFactory, RetryHandler retryHandler) {
         this.inputHandler = inputHandler;
-    }
-
-    public String promptTravelName() {
-        return "여행 이름을 입력하세요 * : ";
-    }
-
-    public String promptStartDate() {
-        return "시작 날짜를 입력하세요 * (ex. 2025-12-25) : ";
-    }
-
-    public String promptEndDate() {
-        return "종료 날짜를 입력하세요 * (ex. 2025-12-31) : ";
+        this.travelFactory = travelFactory;
+        this.retryHandler = retryHandler;
     }
 
     public void printMessage(String message) {
         System.out.println(message);
     }
 
+    public String promptTravelName() {
+        printMessage("여행 이름을 입력하세요 * : ");
+        return inputHandler.getTravelName();
+    }
+
+    public LocalDate promptStartDate() {
+        printMessage("시작 날짜를 입력하세요 * (ex. 2025-12-25) : ");;
+        return inputHandler.getStartDate();
+    }
+
+    public LocalDate promptEndDate(LocalDate startDate) {
+        printMessage("종료 날짜를 입력하세요 * (ex. 2025-12-31) : ");
+        return inputHandler.getEndDate(startDate);
+    }
+
     public Travel readTravelFromUser() {
-        printMessage(promptTravelName());
-        String travelName = inputHandler.getTravelName();
+        String travelName = retryHandler.handle(this::promptTravelName);
+        LocalDate startDate = retryHandler.handle(this::promptStartDate);
+        LocalDate endDate = retryHandler.handle(() -> promptEndDate(startDate));
 
-        printMessage(promptStartDate());
-        LocalDate startDate = inputHandler.getStartDate();
-
-        printMessage(promptEndDate());
-        LocalDate endDate = inputHandler.getEndDate(startDate);
-
-        // 임시 id 값
-        return new Travel(1, travelName, startDate, endDate);
+        return travelFactory.newTravel(travelName, startDate, endDate);
     }
 
     private String formatTravelInfo(Travel travel) {

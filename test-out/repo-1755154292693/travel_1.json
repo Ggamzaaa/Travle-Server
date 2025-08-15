@@ -2,5 +2,12 @@
   "trip_id": 1,
   "trip_name": "상하이 여행",
   "start_date": "2025-08-13",
-  "end_date": "2025-08-16"
+  "end_date": "2025-08-16",
+  "itineraries": [
+    { "itinerary_id": 0, "departure_place": "서울", "destination": "제주", "departure_time": "2025-08-11T11:00", "arrival_time": "2025-08-13T11:00", "check_in": "2025-08-14T11:00", "check_out": "2025-08-15T11:00" },
+    { "itinerary_id": 1, "departure_place": "서울", "destination": "상하이", "departure_time": "2025-08-11T11:00", "arrival_time": "2025-08-13T11:00", "check_in": "2025-08-14T11:00", "check_out": "2025-08-15T11:00" },
+    { "itinerary_id": 2, "departure_place": "서울", "destination": "부산", "departure_time": "2025-08-12T09:00", "arrival_time": "2025-08-12T12:00", "check_in": "2025-08-12T14:00", "check_out": "2025-08-12T18:00" },
+    { "itinerary_id": 3, "departure_place": "서울", "destination": "상하이", "departure_time": "2025-08-11T11:00", "arrival_time": "2025-08-13T11:00", "check_in": "2025-08-14T11:00", "check_out": "2025-08-15T11:00" },
+    { "itinerary_id": 4, "departure_place": "서울", "destination": "상하이", "departure_time": "2025-08-11T11:00", "arrival_time": "2025-08-13T11:00", "check_in": "2025-08-14T11:00", "check_out": "2025-08-15T11:00" }
+  ]
 }

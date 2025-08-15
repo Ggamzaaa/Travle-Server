@@ -1,9 +1,9 @@
 package interfaces.console.controller;
 
-public class MainController {
+public class MainConsoleController {
     private final TravelConsoleController travelConsoleController;
 
-    public MainController(TravelConsoleController travelConsoleController) {
+    public MainConsoleController(TravelConsoleController travelConsoleController) {
         this.travelConsoleController = travelConsoleController;
     }
 
