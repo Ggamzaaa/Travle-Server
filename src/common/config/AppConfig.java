@@ -8,7 +8,7 @@ import interfaces.console.view.TravelView;
 import common.domain.AtomicIdGenerator;
 import common.domain.IdGenerator;
 import itinerary.domain.ItineraryRepository;
-import itinerary.domain.JsonItineraryRepository;
+import itinerary.infra.JsonItineraryRepository;
 import travel.application.TravelFactory;
 import travel.application.TravelService;
 import travel.application.TravelServiceImpl;

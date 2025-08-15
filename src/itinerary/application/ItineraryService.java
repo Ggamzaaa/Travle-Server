@@ -2,7 +2,7 @@ package itinerary.application;
 
 import itinerary.domain.Itinerary;
 import itinerary.domain.ItineraryRepository;
-import itinerary.domain.JsonItineraryRepository;
+import itinerary.infra.JsonItineraryRepository;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

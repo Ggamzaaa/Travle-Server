@@ -1,6 +1,8 @@
-package itinerary.domain;
+package itinerary.infra;
 
 import common.infra.JsonGenerator;
+import itinerary.domain.Itinerary;
+import itinerary.domain.ItineraryRepository;
 import java.io.*;
 import java.util.*;
 
