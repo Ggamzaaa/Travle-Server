@@ -12,20 +12,20 @@ public class InputHandler {
 
     public String getTravelName() {
         Scanner sc = new Scanner(System.in);
-        String travelNameValue = sc.next();
+        String travelNameValue = sc.nextLine();
         inputParser.validateTravelName(travelNameValue);
         return travelNameValue;
     }
 
     public LocalDate getStartDate() {
         Scanner sc = new Scanner(System.in);
-        String travelStartDate = sc.next();
+        String travelStartDate = sc.nextLine();
         return inputParser.validateStartDate(travelStartDate);
     }
 
     public LocalDate getEndDate(LocalDate startDate) {
         Scanner sc = new Scanner(System.in);
-        String travelEndDate = sc.next();
+        String travelEndDate = sc.nextLine();
         return inputParser.validateEndDate(travelEndDate, startDate);
     }
 }

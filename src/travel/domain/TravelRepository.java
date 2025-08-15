@@ -1,10 +1,6 @@
 package travel.domain;
 
-import java.util.List;
-import java.util.Optional;
+import common.domain.Repository;
 
-public interface TravelRepository {
-    Travel save(Travel travel);
-    List<Travel> findAll();
-    Optional<Travel> findById(int id);
+public interface TravelRepository extends Repository<Travel, Integer> {
 }

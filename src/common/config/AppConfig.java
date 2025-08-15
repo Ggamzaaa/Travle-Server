@@ -2,7 +2,7 @@ package common.config;
 
 import interfaces.console.controller.MainConsoleController;
 import common.domain.IdGenerator;
-import common.domain.AtomicIdGenerator; // nextId() 형태
+import common.domain.AtomicIdGenerator;
 import interfaces.console.controller.TravelConsoleController;
 import interfaces.console.util.InputHandler;
 import interfaces.console.util.InputParser;
@@ -48,7 +48,11 @@ public class AppConfig {
     }
 
     public TravelView travelView() {
-        return new TravelView(inputHandler());
+        return new TravelView(inputHandler(), travelFactory);
+    }
+
+    public TravelFactory travelFactory() {
+        return new TravelFactory(idGenerator);
     }
 
     public InputHandler inputHandler() {

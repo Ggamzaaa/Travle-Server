@@ -3,13 +3,16 @@ package interfaces.console.view;
 import interfaces.console.util.InputHandler;
 import java.time.LocalDate;
 import java.util.List;
+import travel.application.TravelFactory;
 import travel.domain.Travel;
 
 public class TravelView {
     private final InputHandler inputHandler;
+    private final TravelFactory travelFactory;
 
-    public TravelView(InputHandler inputHandler) {
+    public TravelView(InputHandler inputHandler, TravelFactory travelFactory) {
         this.inputHandler = inputHandler;
+        this.travelFactory = travelFactory;
     }
 
     public String promptTravelName() {
@@ -25,7 +28,7 @@ public class TravelView {
     }
 
     public void printMessage(String message) {
-        System.out.println(message);
+        System.out.print(message);
     }
 
     public Travel readTravelFromUser() {
@@ -38,8 +41,7 @@ public class TravelView {
         printMessage(promptEndDate());
         LocalDate endDate = inputHandler.getEndDate(startDate);
 
-        // 임시 id 값
-        return new Travel(1, travelName, startDate, endDate);
+        return travelFactory.newTravel(travelName, startDate, endDate);
     }
 
     private String formatTravelInfo(Travel travel) {
