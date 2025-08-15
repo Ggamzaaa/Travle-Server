@@ -3,6 +3,7 @@ package test.itinerary;
 import common.domain.AtomicIdGenerator;
 import itinerary.application.ItineraryFactory;
 import itinerary.application.ItineraryService;
+import itinerary.application.ItineraryServiceImpl;
 import itinerary.domain.Itinerary;
 import itinerary.domain.ItineraryRepository;
 
@@ -18,11 +19,14 @@ public class ItineraryTest {
         // 기존 파일 기반 Repository 사용
         File dir = new File("test-out/repo-1755154292693");
         ItineraryRepository repo = new JsonItineraryRepository(dir.getPath());
+        ItineraryService service = new ItineraryServiceImpl(repo);
+
         int travelId = 1;
-        int seed = repo.findItinerariesByTravelId(travelId).stream().mapToInt(Itinerary::getItineraryId).max().orElse(0);
+//        int seed = repo.findItinerariesByTravelId(travelId).stream().mapToInt(Itinerary::getItineraryId).max().orElse(0);
+        int seed = service.getItinerariesByTravelId(travelId).stream().mapToInt(Itinerary::getItineraryId).max().orElse(0);
 
         ItineraryFactory factory = new ItineraryFactory(new AtomicIdGenerator(seed));
-        ItineraryService itineraryService = new ItineraryService(repo);
+//        ItineraryService itineraryService = new ItineraryService(repo);
 
         // --- 여정 기록 ---
 //        Itinerary i1 = factory.newItinerary(1, "서울", "제주",
@@ -39,7 +43,8 @@ public class ItineraryTest {
                 LocalDateTime.parse("2025-08-14T11:00:00"),
                 LocalDateTime.parse("2025-08-15T11:00:00")
         );
-        itineraryService.save(i2);
+//        itineraryService.save(i2);
+        service.save(i2);
 //
 //        Itinerary i3 = factory.newItinerary(1, "서울", "부산",
 //                LocalDateTime.parse("2025-08-12T09:00:00"),
@@ -50,7 +55,7 @@ public class ItineraryTest {
 //        itineraryService.save(i3);
 
         // --- 해당 여행의 여정 조회 및 출력 ---
-        List<Itinerary> itineraries = itineraryService.getItinerariesByTravelId(1);
+        List<Itinerary> itineraries = service.getItinerariesByTravelId(1);
         System.out.println("저장된 여정 목록:");
         for (Itinerary i : itineraries) {
             System.out.println(i);
